@@ -1,4 +1,4 @@
-const comments = require("../data/comments");
+const contacts = require("../data/contacts");
 
 const list = (req, res) => {
   res.json(contacts);
@@ -10,12 +10,13 @@ const show = (req, res) => {
   res.json(contact);
 };
 
+var counter = 6;
 const create = (req, res) => {
-  contacts.push({
-    _id: (counter += 1),
-    postId: 1,
-    ...req.body
-  });
+  let contact = req.body;
+  contact._id = counter;
+  contacts.push(contact);
+  res.send(JSON.stringify(contact));
+  counter++;
 };
 
 module.exports = {
